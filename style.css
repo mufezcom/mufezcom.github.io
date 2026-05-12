@@ -1,0 +1,222 @@
+/* ============================================================
+   Mufez — Soul & Performance
+   Single viewport landing page
+   ============================================================ */
+
+:root {
+    --bg: #080a10;
+    --text: #e4e7f0;
+    --text-muted: #8b9bb4;
+    --accent: #5b8cff;
+    --accent-dark: #3d6fd8;
+    --font-body: 'Inter', system-ui, -apple-system, sans-serif;
+    --font-mono: 'JetBrains Mono', 'SF Mono', 'Fira Code', monospace;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+    font-family: var(--font-body);
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.5;
+    overflow: hidden;
+}
+
+/* Global dither noise overlay */
+.dither-overlay {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 100;
+    opacity: 0.04;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-repeat: repeat;
+    background-size: 256px 256px;
+    mix-blend-mode: overlay;
+}
+
+/* Layout wrapper */
+.site {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+    height: 100dvh;
+    overflow: hidden;
+    text-align: center;
+}
+
+/* Background image */
+.bg {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+}
+
+.bg-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 35%;
+    filter: brightness(0.75) contrast(1.1);
+}
+
+.bg-grad {
+    position: absolute;
+    inset: 0;
+    background:
+        radial-gradient(ellipse at center, rgba(9,9,11,0.3) 0%, rgba(9,9,11,0.65) 100%),
+        linear-gradient(to bottom, rgba(9,9,11,0.5) 0%, rgba(9,9,11,0.1) 40%, rgba(9,9,11,0.1) 60%, rgba(9,9,11,0.7) 100%);
+}
+
+/* Header */
+.top {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 1200px;
+    padding: 1.5rem 2rem;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: 700;
+    font-size: 1.125rem;
+    letter-spacing: -0.02em;
+}
+
+.mark { color: var(--accent); font-size: 1.25rem; }
+
+.gh {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    color: var(--text-muted);
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 0.625rem;
+    transition: all 0.2s ease;
+}
+
+.gh:hover {
+    color: var(--text);
+    background: rgba(255,255,255,0.08);
+    border-color: rgba(255,255,255,0.14);
+}
+
+/* Hero content */
+.hero {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.25rem;
+    padding: 0 1.5rem;
+    max-width: 720px;
+}
+
+.loc {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent);
+    opacity: 0.9;
+}
+
+.hero h1 {
+    font-family: var(--font-mono);
+    font-size: clamp(1.25rem, 4vw, 3rem);
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    white-space: nowrap;
+}
+
+.hl { color: var(--accent); }
+
+.tag {
+    font-size: clamp(0.9375rem, 1.8vw, 1.125rem);
+    color: var(--text-muted);
+    max-width: 420px;
+    line-height: 1.6;
+}
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    font-family: var(--font-mono);
+    font-size: 0.8125rem;
+    font-weight: 500;
+    color: var(--accent);
+    background: rgba(91, 140, 255, 0.06);
+    border: 1px solid rgba(91, 140, 255, 0.25);
+    border-radius: 0.5rem;
+    transition: all 0.2s ease;
+}
+
+.btn:hover {
+    background: rgba(91, 140, 255, 0.12);
+    border-color: rgba(91, 140, 255, 0.45);
+}
+
+/* Footer */
+.foot {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 1200px;
+    padding: 1.25rem 2rem;
+}
+
+.copy {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: rgba(255,255,255,0.35);
+    letter-spacing: 0.05em;
+}
+
+.foot-flag svg {
+    border-radius: 2px;
+    box-shadow: 0 0 0 1px rgba(255,255,255,0.06);
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(12px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Mobile */
+@media (max-width: 640px) {
+    .top, .foot { padding: 1rem 1.25rem; }
+    .hero { padding: 0 1.25rem; gap: 1rem; }
+    .btn { padding: 0.75rem 1.5rem; font-size: 0.875rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .hero { animation: none; opacity: 1; }
+}
